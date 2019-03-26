@@ -5,13 +5,19 @@ var prototype = {
     formatString(args) {
         if (arguments.length > 0) {
             var result = this;
-            // console.log(args, typeof(args))
-            if (arguments.length == 1 && typeof(args) == "object") {
+            if (arguments.length == 1 && Array.isArray(args)) {
+                for (var i = 0; i < args.length; i++) {
+                    var reg = new RegExp("({[" + i + "]})", "g");
+                    result = result.replace(reg, args[i]);
+                }
+            } 
+            else if (arguments.length == 1 && typeof(args) == "object") {
                 for (var key in args) {
                     var reg = new RegExp("({" + key + "})", "g");
                     result = result.replace(reg, args[key]);
                 }
-            } else {
+            }
+            else {
                 for (var i = 0; i < arguments.length; i++) {
                     if (arguments[i] == undefined) {
                         return "";

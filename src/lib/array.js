@@ -99,7 +99,7 @@ var propotype = {
         return this;
     },
     removeAt(index) {
-        return this.splice(index, 1);
+        return this.splice(index, 1)[0];
     },
     distinct() {
         return Array.from(new Set(this));
@@ -120,18 +120,29 @@ var propotype = {
         return this.slice(start, end);
     },
     group(key) {
-        var result = {};
-        this.forEach(function(item) {
-            if (!result[item[key]])
-                result[item[key]] = new Array();
-            result[item[key]].push(item);
-        });
-        return Object.keys(result).map(function(key) {
-            return {
-                key: key,
-                value: obj[key]
+        // var result = {};
+        // this.forEach(function(item) {
+        //     if (!result[item[key]])
+        //         result[item[key]] = new Array();
+        //     result[item[key]].push(item);
+        // });
+        // return Object.keys(result).map(function(key) {
+        //     return {
+        //         key: key,
+        //         value: result[key]
+        //     }
+        // });
+        var result=[];
+        this.forEach(function(item){
+            var old=result.find(function(a){return a.key==item[key]});
+            if(old){
+                old.value.push(item);
+            }
+            else{
+                result.push({key:item[key],value:[item]});
             }
         });
+        return result;
     },
 }
 export default propotype;

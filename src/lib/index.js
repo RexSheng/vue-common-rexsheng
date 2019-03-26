@@ -4,6 +4,7 @@ import string from './string'
 import cookie from './cookie'
 import dom from './dom'
 import file from './file'
+import localstorage from './localstorage'
 const commonPlugin={
     install:function(Vue,options={}){
         Vue.prototype.$randomString=Vue.randomString=util.getRandomString;
@@ -79,6 +80,9 @@ const commonPlugin={
         Vue.prototype.$bind = dom.bind;
         Vue.prototype.$unbind = dom.unbind;
         Vue.prototype.$file = Vue.file = file;
+        var rootStorageKey=options.storageKey || "vue";
+        localstorage.STORAGE_KEY=rootStorageKey;
+        Vue.prototype.$storage = Vue.storage = localstorage;
     }
 }
 export default commonPlugin;
