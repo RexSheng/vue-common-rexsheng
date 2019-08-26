@@ -77,6 +77,9 @@ JsSql.prototype.globalMethod = function() {
 
 }
 var propotype = {
+    sql(){
+        return new JsSql(this)
+    },
     last() {
         return this.slice(-1)
     },

@@ -1,11 +1,11 @@
-var localstorage = {
+var sessionstorage = {
 
     STORAGE_KEY:"vue",
 
     set: function(key, value,Object) {
         
         var keys=key.split(".").filter(m=>m!="");
-        var current=Object || JSON.parse(window.localStorage.getItem(this.STORAGE_KEY) || "{}");
+        var current=Object || JSON.parse(window.sessionStorage.getItem(this.STORAGE_KEY) || "{}");
         if(current!=undefined && current!=null && keys.length>0){
             var firstKey=keys.shift();
             if(keys.length>0){
@@ -17,7 +17,7 @@ var localstorage = {
             else{
                 current[key]=value;
             }
-            window.localStorage.setItem(this.STORAGE_KEY, JSON.stringify(current));
+            window.sessionStorage.setItem(this.STORAGE_KEY, JSON.stringify(current));
         }
         else{
             current[key]=value;
@@ -25,7 +25,7 @@ var localstorage = {
     },
     get: function(key,Object) {
         var keys=key.split(".").filter(m=>m!="");
-        var current=Object || JSON.parse(window.localStorage.getItem(this.STORAGE_KEY) || "{}");
+        var current=Object || JSON.parse(window.sessionStorage.getItem(this.STORAGE_KEY) || "{}");
         if(current!=undefined && current!=null && keys.length>0){
             var firstKey=keys.shift();
             if(keys.length>0){
@@ -41,7 +41,7 @@ var localstorage = {
     },
     clear: function(key,Object) {
         if(key==undefined){
-            window.localStorage.removeItem(this.STORAGE_KEY);
+            window.sessionStorage.removeItem(this.STORAGE_KEY);
         }
         else{
             var current=this.get(key);
@@ -52,4 +52,4 @@ var localstorage = {
         
     }
 }
-export default localstorage;
+export default sessionstorage;

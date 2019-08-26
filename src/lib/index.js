@@ -5,10 +5,11 @@ import cookie from './cookie'
 import dom from './dom'
 import file from './file'
 import localstorage from './localstorage'
+import sessionstorage from './sessionstorage'
 const commonPlugin={
     install:function(Vue,options={}){
         Vue.prototype.$randomString=Vue.randomString=util.getRandomString;
-        Vue.copy=util.copy;
+        Vue.prototype.$copy=Vue.copy=util.copy;
         Object.assign(Array.prototype, array);
         Object.assign(String.prototype, string);
 
@@ -83,6 +84,7 @@ const commonPlugin={
         var rootStorageKey=options.storageKey || "vue";
         localstorage.STORAGE_KEY=rootStorageKey;
         Vue.prototype.$storage = Vue.storage = localstorage;
+        Vue.prototype.$session = Vue.session = sessionstorage;
     }
 }
 export default commonPlugin;

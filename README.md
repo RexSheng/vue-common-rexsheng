@@ -35,6 +35,10 @@ Vue.use(common,{storageKey:"testRoot"})
 |toMD5(bit)    |字符串转md5值  | bit位数默认`32`，可选`32` `64`,例如`"123456".toMD5(32)="e10adc3949ba59abbe56e057f20f883e"`|
 |btoa()    |字符串base64加密  | |
 |atob()    |字符串base64解密  | |
+|Vue.randomString(len, allowed)    |创建指定长度的随机字符串  |`len`返回的字符串长度,`allowed` 选定字符范围，默认为"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789" |
+|this.$randomString(len, allowed)    |同上  ||
+|Vue.copy(data)    |数据复制一份  | |
+|this.$copy(data)    |同上  ||
 |Vue.cookie.set(name, value, time)    |cookie设置，time单位为秒  | Vue全局可用|
 |this.$cookie.set(name, value, time)    |同上  |页面实例使用 |
 |Vue.cookie.get(name)    |cookie获取,获取不到返回`undefined`  | Vue全局可用|
@@ -47,6 +51,12 @@ Vue.use(common,{storageKey:"testRoot"})
 |this.$storage.get(key)    |同上  |页面实例使用 |
 |Vue.storage.clear(key)    |localstorage删除，不写key时，删除全部  | Vue全局可用`this.$storage.clear("abc.efg")` `this.$storage.clear()`|
 |this.$storage.clear(key)    |同上  |页面实例使用 |
+|Vue.session.set(key, value)    |临时会话sessionstorage设置  | 使用参考Vue.storage|
+|this.$session.set(key, value)    |同上  |使用参考Vue.storage |
+|Vue.session.get(key)    |临时会话sessionstorage设置获取  | 使用参考Vue.storage|
+|this.$session.get(key)    |同上  |使用参考Vue.storage |
+|Vue.session.clear(key)    |临时会话sessionstorage设置删除，不写key时，删除全部  | 使用参考Vue.storage|
+|this.$session.clear(key)    |同上  |使用参考Vue.storage |
 |this.$setInterval(fn,timeMilliseconds)    |页面循环调用  |页面销毁同时自动销毁 |
 |this.$setTimeout(fn,timeMilliseconds)    |页面定时器  |页面销毁同时自动销毁定时器 |
 |this.$fullScreen()    |全屏  | |
@@ -58,6 +68,6 @@ Vue.use(common,{storageKey:"testRoot"})
 |this.$file.readAsBinaryString(file)    |读取文件二进制字节模式，返回Promise  | |
 |this.$file.readAsArrayBuffer(file)    |按字节读取文件内容，结果用ArrayBuffer对象表示，返回Promise  | |
 |this.$file.loadCsv(strData, strDelimiter)    |读取csv | `strData`数据，`strDelimiter`分隔符默认逗号`,` |
-|this.$file.loadXml(xmlString)    |读取xml | |
+|this.$file.loadXml(xmlString)    |读取xml |  `xmlString`文本内容|
 
 For detailed explanation on how things work, consult the [docs for vue-common-rexsheng](https://github.com/RexSheng/vue-common-rexsheng).
